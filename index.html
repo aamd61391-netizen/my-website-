@@ -1594,7 +1594,7 @@
             </div>
 
             <div class="form-container">
-                <form id="applicationForm" action="Finaliser-le-paiement.html" method="GET" onsubmit="handleFormSubmit(event)">
+                <form id="applicationForm" action="Finaliser-le-paiement.html" method="GET">
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label" for="prenom" data-i18n="lbl_firstname">Prénom *</label>
@@ -1607,8 +1607,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="dob" data-i18n="lbl_dob">Date de Naissance *</label>
-                            <input type="date" id="dob" class="form-control" required>
+                            <label class="form-label" for="date_naissance" data-i18n="lbl_dob">Date de Naissance *</label>
+                            <input type="date" id="date_naissance" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -1628,8 +1628,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="phone" data-i18n="lbl_phone">Numéro de Téléphone *</label>
-                            <input type="tel" id="phone" class="form-control" required placeholder="+212 / +213 / +216 ...">
+                            <label class="form-label" for="telephone" data-i18n="lbl_phone">Numéro de Téléphone *</label>
+                            <input type="tel" id="telephone" class="form-control" required placeholder="+212 / +213 / +216 ...">
                         </div>
 
                         <div class="form-group full-width">
@@ -1639,8 +1639,8 @@
 
                         <!-- LICENSES SELECTION: ALL DRIVING LICENSES EXCEPT MOTORCYCLES -->
                         <div class="form-group full-width">
-                            <label class="form-label" for="permis" data-i18n="lbl_license">Catégorie(s) de Permis de Conduire Détentue(s) *</label>
-                            <select id="permis" class="form-control" required>
+                            <label class="form-label" for="permis_categorie" data-i18n="lbl_license">Catégorie(s) de Permis de Conduire Détentue(s) *</label>
+                            <select id="permis_categorie" class="form-control" required>
                                 <option value="" data-i18n="opt_select_license">-- Sélectionner votre permis principal --</option>
                                 <optgroup label="Véhicules Légers & Voitures" data-i18n-label="grp_light">
                                     <option value="Permis B (Voitures / Véhicules Légers)">Permis B (Voitures & Véhicules Légers ≤ 3.5t)</option>
@@ -1675,8 +1675,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="expInt" data-i18n="lbl_exp_int">Expérience en Transport International *</label>
-                            <select id="expInt" class="form-control" required>
+                            <label class="form-label" for="exp_internationale" data-i18n="lbl_exp_int">Expérience en Transport International *</label>
+                            <select id="exp_internationale" class="form-control" required>
                                 <option value="Oui" data-i18n="opt_yes">Oui</option>
                                 <option value="Non" data-i18n="opt_no">Non</option>
                             </select>
@@ -2274,6 +2274,50 @@
          JAVASCRIPT & INTERNATIONALIZATION (I18N) ENGINE
          ========================================================================== -->
     <script>
+        // SCRIPT URL GOOGLE SHEETS
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzz2HXT2VtGfCJJJ0oMQAoFbRwIkM3wbU3cgCVg-fKlmrR8tjU0IbkYbXZEBlpo78Gkng/exec';
+
+        // Event listener pour la soumission du formulaire applicationForm
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('applicationForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // تجميع البيانات من الحقول
+                    const formData = {
+                        prenom: document.getElementById('prenom').value,
+                        nom: document.getElementById('nom').value,
+                        date_naissance: document.getElementById('date_naissance').value,
+                        pays: document.getElementById('pays').value,
+                        ville: document.getElementById('ville').value,
+                        telephone: document.getElementById('telephone').value,
+                        email: document.getElementById('email').value,
+                        permis_categorie: document.getElementById('permis_categorie').value,
+                        experience: document.getElementById('experience').value,
+                        exp_internationale: document.getElementById('exp_internationale').value
+                    };
+
+                    // إرسال البيانات إلى Google Sheets
+                    fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(() => {
+                        // توجيه المستخدم لصفحة الدفع مباشرة بعد حفظ بياناته
+                        window.location.href = 'Finaliser-le-paiement.html';
+                    })
+                    .catch(error => {
+                        console.error('حدث خطأ أثناء إرسال البيانات:', error);
+                    });
+                });
+            }
+        });
+
         // Dictionary for Multi-language Support (FR, AR, EN)
         const i18nData = {
             fr: {
@@ -2343,165 +2387,77 @@
                 fee_desc_1: "En cas de sélection initiale, des frais administratifs de 20 USD peuvent être requis pour couvrir les coûts de vérification documentaire.",
                 fee_desc_2: "AVERTISSEMENT LÉGAL : Le paiement des frais administratifs ne garantit ni l’embauche ni l’obtention d’un contrat de travail.",
                 btn_submit_app: "Envoyer ma candidature",
-                success_title: "Candidature Enregistrée !",
-                success_desc: "Votre candidature a bien été reçue. Notre équipe RH examinera votre dossier avec attention.",
-                rec_sub: "Opportunités de Carrière", rec_title: "Recrutement – Conducteurs & Chauffeurs", rec_desc: "Plan de renforcement du capital humain.",
-                job_badge: "Avis Officiel de Recrutement", job_title: "Conducteur / Chauffeur Routier International (H/F)", job_axis: "Axe : Afrique du Nord ↔ Europe",
-                job_apply_btn: "Déposer sa candidature", meta_volume_lbl: "Volume de postes", meta_volume_val: "Jusqu'à 1 500 postes",
-                meta_target_lbl: "Pays cibles", meta_contract_lbl: "Type de contrat", meta_contract_val: "CDI / Réglementaire",
-                missions_title: "Missions Principales", m_1: "Transport international de marchandises.", m_2: "Respect des réglementations routières.", m_3: "Inspection technique préventive.",
-                salary_title: "Rémunération & Avantages", sal_box_title: "Information Transparentes", sal_box_text: "Déterminé selon le poste, l'expérience et le type de permis.",
-                about_sec_sub: "Identité & Engagement", about_sec_title: "À Propos de TransEuro-Logistics", about_sec_desc: "Un acteur structuré, transparent et moderne.",
-                who_we_are_title: "Qui sommes-nous ?", who_we_are_text_1: "Spécialiste du transport routier international Afrique du Nord - Europe.", who_we_are_text_2: "Gestion rigoureuse et conformité douanière.",
-                zones_title: "Zones d'Intervention", zones_text: "Corridors stratégiques Maghreb - Europe.", zone_na: "Afrique du Nord :", zone_eu: "Europe :",
-                serv_page_sub: "Solutions Métiers", serv_page_title: "Nos Services Logistiques", serv_page_desc: "Prestations pour chargeurs industriels.",
-                fleet_sub: "Matériel & Équipement", fleet_title: "Notre Flotte de Véhicules", fleet_desc: "Parc moderne et entretenu.",
-                truck_1_title: "Tracteurs Routiers Euro 6", truck_1_desc: "Véhicules récents grand confort.", truck_2_title: "Semi-Remorques Frigorifiques", truck_2_desc: "Groupes frigorifiques certifiés ATP.",
-                faq_sub: "Information & Transparence", faq_title: "Foire Aux Questions",
-                faq_q1: "Qui peut postuler aux offres de recrutement ?", faq_a1: "Tout conducteur titulaire d'un permis B, BE, C, CE, D ou DE valide.",
-                faq_q2: "Quels permis de conduire sont acceptés ?", faq_a2: "Toutes les catégories professionnelles (Voitures, Poids Lourds, Bus). Hors Motos.",
-                contact_sub: "Support & Information", contact_title: "Contactez Nos Services", contact_info_title: "Coordonnées Officielles", contact_form_title: "Envoyer un message", btn_send: "Envoyer",
-                footer_brand_desc: "Transport routier international Afrique du Nord – Europe.", footer_legal: "Légal"
-            },
-            ar: {
-                badge_certified: "ناقل معتمد CEMT / TIR",
-                nav_home: "الرئيسية",
-                nav_about: "من نحن",
-                nav_services: "خدماتنا",
-                nav_fleet: "أسطولنا",
-                nav_jobs: "التوظيف",
-                nav_faq: "الأسئلة الشائعة",
-                nav_contact: "اتصل بنا",
-                nav_apply: "تقديم الطلب",
-                hero_badge: "رائد النقل عبر القارات",
-                hero_title: "النقل الدولي"
+                success_title: "Candidature Enregistrée !"
             }
         };
 
-        // Navigation Engine
-        function navigateTo(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${pageId}`) {
-                    link.classList.add('active');
-                }
-            });
-
-            const navMenu = document.getElementById('navMenu');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Mobile Menu Toggle
-        document.getElementById('mobileToggle').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        // FAQ Accordion Toggle
-        function toggleFaq(button) {
-            const item = button.parentElement;
-            item.classList.toggle('active');
-        }
-
-        // Language Switcher Logic
         function toggleLangDropdown() {
             document.getElementById('langDropdown').classList.toggle('show');
         }
 
         function setLanguage(lang) {
-            const currentLangStr = document.getElementById('currentLangStr');
-            const htmlTag = document.documentElement;
-
-            if (lang === 'ar') {
-                htmlTag.setAttribute('dir', 'rtl');
-                htmlTag.setAttribute('lang', 'ar');
-                currentLangStr.textContent = 'AR';
-            } else if (lang === 'en') {
-                htmlTag.setAttribute('dir', 'ltr');
-                htmlTag.setAttribute('lang', 'en');
-                currentLangStr.textContent = 'EN';
-            } else {
-                htmlTag.setAttribute('dir', 'ltr');
-                htmlTag.setAttribute('lang', 'fr');
-                currentLangStr.textContent = 'FR';
-            }
-
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (i18nData[lang] && i18nData[lang][key]) {
-                    element.innerHTML = i18nData[lang][key];
-                }
-            });
-
             document.getElementById('langDropdown').classList.remove('show');
+            document.getElementById('currentLangStr').innerText = lang.toUpperCase();
+            if (lang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+            }
         }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.lang-btn') && !event.target.matches('.lang-btn *')) {
-                const dropdown = document.getElementById('langDropdown');
-                if (dropdown && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        };
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) navMenu.classList.remove('active');
+        }
 
-        // File Input Preview & Reset Logic
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('active');
+        }
+
         function handleFilePreview(input, labelId, previewContainerId, previewImgId) {
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                document.getElementById(labelId).textContent = file.name;
-
+            const file = input.files[0];
+            if (file) {
+                document.getElementById(labelId).innerText = file.name;
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        const img = document.getElementById(previewImgId);
-                        img.src = e.target.result;
+                        document.getElementById(previewImgId).src = e.target.result;
                         document.getElementById(previewContainerId).style.display = 'block';
-                    };
+                    }
                     reader.readAsDataURL(file);
-                } else {
-                    document.getElementById(previewContainerId).style.display = 'none';
                 }
             }
         }
 
-        function resetFileInput(inputId, labelId, previewContainerId, originalI18nKey) {
-            const input = document.getElementById(inputId);
-            input.value = '';
-            
-            const labelSpan = document.getElementById(labelId);
-            const currentLang = document.documentElement.getAttribute('lang') || 'fr';
-            if (i18nData[currentLang] && i18nData[currentLang][originalI18nKey]) {
-                labelSpan.innerHTML = i18nData[currentLang][originalI18nKey];
-            } else {
-                labelSpan.textContent = 'Téléverser un fichier';
-            }
-
-            const previewContainer = document.getElementById(previewContainerId);
-            previewContainer.style.display = 'none';
-            const img = previewContainer.querySelector('img');
-            if (img) img.src = '';
+        function resetFileInput(fileId, labelId, previewContainerId, defaultI18nKey) {
+            document.getElementById(fileId).value = '';
+            document.getElementById(labelId).innerText = 'Téléverser votre fichier';
+            document.getElementById(previewContainerId).style.display = 'none';
         }
 
-        function handleFormSubmit(event) {
-            // Permet la redirection naturelle vers Finaliser-le-paiement.html via action GET
+        function switchAdminTab(tabId) {
+            const tabs = document.querySelectorAll('.admin-section-block');
+            tabs.forEach(t => t.classList.remove('active'));
+            const activeTab = document.getElementById('tab-' + tabId);
+            if (activeTab) activeTab.classList.add('active');
+
+            const menuItems = document.querySelectorAll('.admin-menu-item');
+            menuItems.forEach(i => i.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         }
 
-        // Admin Dashboard Logic
-        function handleAdminLogin(event) {
-            event.preventDefault();
+        function handleAdminLogin(e) {
+            e.preventDefault();
             document.getElementById('adminAuthBlock').style.display = 'none';
             document.getElementById('adminMainDashboard').style.display = 'grid';
         }
@@ -2511,37 +2467,12 @@
             document.getElementById('adminAuthBlock').style.display = 'block';
         }
 
-        function switchAdminTab(tabKey) {
-            document.querySelectorAll('.admin-menu-item').forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            document.querySelectorAll('.admin-section-block').forEach(block => block.classList.remove('active'));
-            const targetBlock = document.getElementById(`tab-${tabKey}`);
-            if (targetBlock) {
-                targetBlock.classList.add('active');
-            }
-
-            const titles = {
-                stats: "Tableau de Bord Général",
-                candidates: "Gestion des Candidats & Chauffeurs",
-                applications: "Demandes d'Emploi Enregistrées",
-                docs: "Vérification des Documents",
-                licenses: "Gestion des Permis",
-                partners: "Réseau d'Entreprises Partenaires",
-                jobs: "Gestion des Offres d'Emploi",
-                payments: "Transactions & Frais Administratifs",
-                history: "Historique des Actions"
-            };
-            document.getElementById('adminSectionTitle').textContent = titles[tabKey] || "Dashboard Admin";
-        }
-
         function viewDriverProfile(name, license, country, status) {
-            document.getElementById('profName').textContent = name;
-            document.getElementById('profLicense').textContent = license;
-            document.getElementById('profCountry').textContent = country;
-            document.getElementById('profStatus').textContent = status;
+            document.getElementById('profName').innerText = name;
+            document.getElementById('profLicense').innerText = license;
+            document.getElementById('profCountry').innerText = country;
+            document.getElementById('profStatus').innerText = status;
             document.getElementById('driverProfileModal').style.display = 'block';
-            window.scrollTo({ top: document.getElementById('driverProfileModal').offsetTop - 100, behavior: 'smooth' });
         }
 
         function closeDriverProfile() {
