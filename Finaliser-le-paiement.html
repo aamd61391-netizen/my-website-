@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع بـ البطاقة | TRANSMAGHREB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #ffffff;
+            --bg-card: #f8fafc;
+            --bg-card-hover: #f1f5f9;
+            --navy-primary: #ffffff;
+            --navy-secondary: #f1f5f9;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --gold-dark: #aa8c2c;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: rgba(212, 175, 55, 0.3);
+            --border-light: rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            background-color: var(--bg-deep); 
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 500px;
+            background: var(--bg-deep);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation matching main site */
+        header {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.15rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .toolbar { 
+            background: transparent; 
+            padding: 5px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-end; 
+            margin-bottom: 15px;
+        }
+        .close-btn { 
+            font-size: 22px; 
+            color: var(--text-muted); 
+            cursor: pointer; 
+            transition: var(--transition);
+            width: 36px;
+            height: 36px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close-btn:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .method-card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border-light);
+            border-radius: 1.2rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            padding: 15px;
+            height: 105px; 
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .method-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .method-card:active { transform: scale(0.96); }
+        
+        .bank-content {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            gap: 6px;
+        }
+
+        .icon-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-img { 
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .bank-name {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-main);
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 100%;
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 0.75rem;
+            padding: 12px 16px 12px 40px;
+            border: 1px solid var(--border-light);
+            outline: none;
+            text-align: right;
+            transition: var(--transition);
+        }
+        .search-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Modal Overlay Styles for Embedded Checkout */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.2rem;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--bg-deep);
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        .modal-close:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="main-container">
+        <!-- Header integration -->
+        <header>
+            <div class="nav-container">
+                <a href="#" class="logo" onclick="goBack()">
+                    <div class="logo-icon-wrap">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div class="logo-text">TRANS<span>MAGHREB</span></div>
+                </a>
+                <div class="toolbar" style="margin-bottom:0;">
+                    <span class="close-btn" onclick="goBack()">✕</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="cardSearchInput" onkeyup="filterCards()" placeholder="بحث" class="search-input">
+            <span class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </span>
+        </div>
+
+        <!-- Cards Grid -->
+        <main class="pb-10">
+            <div class="grid grid-cols-2 gap-3" id="cardsGrid">
+                
+                <div onclick="openCheckoutModal()" class="method-card card-item" data-name="mastercard">
+                    <div class="bank-content">
+                        <div class="icon-container"><img src="https://i.ibb.co/mrmMR276/IMG-2124.png" class="icon-img"></div>
+                        <span class="bank-name">MasterCard</span>
+                    </div>
+                </div>
+
+                <div onclick="openCheckoutModal()" class="method-card card-item" data-name="visa">
+                    <div class="bank-content">
+                        <div class="icon-container"><img src="https://i.ibb.co/99NmMWmM/IMG-2123.png" class="icon-img"></div>
+                        <span class="bank-name">Visa</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Whop Embedded Checkout Modal -->
+    <div id="checkoutModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCheckoutModal()">✕</button>
+            <div id="whop-checkout" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.whop.com/elements/amber/elements.js" data-whop-elements></script>
+    <script type="module">
+      const checkout = window.WhopElements().checkout.create({
+        plan: "plan_5vawRi1HuDHJO",
+      });
+
+      checkout.create("checkout").mount("#whop-checkout");
+
+      window.openCheckoutModal = function() {
+          document.getElementById('checkoutModal').style.display = 'flex';
+      }
+
+      window.closeCheckoutModal = function() {
+          document.getElementById('checkoutModal').style.display = 'none';
+      }
+
+      // Close modal when clicking outside of modal content
+      window.onclick = function(event) {
+          const modal = document.getElementById('checkoutModal');
+          if (event.target == modal) {
+              closeCheckoutModal();
+          }
+      }
+    </script>
+
+    <script>
+        function goBack() {
+            if (window.parent && window.parent.closeSheet) {
+                window.parent.closeSheet();
+            } else {
+                window.history.back();
+            }
+        }
+
+        function goToPayment(pageName) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const amount = urlParams.get('amount') || '';
+            const userId = urlParams.get('id') || '';
+
+            window.location.href = `${pageName}.html?amount=${amount}&id=${userId}`;
+        }
+
+        function filterCards() {
+            const input = document.getElementById('cardSearchInput').value.toLowerCase();
+            const cards = document.getElementsByClassName('card-item');
+
+            for (let i = 0; i < cards.length; i++) {
+                const name = cards[i].getAttribute('data-name').toLowerCase();
+                const text = cards[i].innerText.toLowerCase();
+                if (name.includes(input) || text.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
