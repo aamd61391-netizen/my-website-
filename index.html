@@ -1483,7 +1483,7 @@
                     <div>
                         <span class="badge badge-gold" data-i18n="job_badge">Avis Officiel de Recrutement</span>
                         <h3 style="font-size: 1.8rem; margin-top: 10px;" data-i18n="job_title">Conducteur / Chauffeur Routier International (H/F)</h3>
-                        <p style="color: var(--text-muted); margin-top: 5px;" data-i18n="job_axis">Axe d'intervention : Afrique du Nord ↔️ Europe</p>
+                        <p style="color: var(--text-muted); margin-top: 5px;" data-i18n="job_axis">Axe d'intervention : Afrique du Nord ↔ Europe</p>
                     </div>
                     <div>
                         <a href="#candidature" class="btn btn-gold" onclick="navigateTo('candidature')">
@@ -1627,4 +1627,1022 @@
                         <div class="form-group">
                             <label class="form-label" for="experience" data-i18n="lbl_exp">Années d'Expérience Globales *</label>
                             <select id="experience" class="form-control" required>
-                                <opt
+                                <option value="Moins de 2 ans" data-i18n="exp_1">Moins de 2 ans</option>
+                                <option value="2 à 5 ans" data-i18n="exp_2">2 à 5 ans</option>
+                                <option value="5 à 10 ans" data-i18n="exp_3">5 à 10 ans</option>
+                                <option value="Plus de 10 ans" data-i18n="exp_4">Plus de 10 ans</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="expInt" data-i18n="lbl_exp_int">Expérience en Transport International *</label>
+                            <select id="expInt" class="form-control" required>
+                                <option value="Oui" data-i18n="opt_yes">Oui</option>
+                                <option value="Non" data-i18n="opt_no">Non</option>
+                            </select>
+                        </div>
+
+                        <!-- Documents Upload -->
+                        <div class="form-group full-width">
+                            <label class="form-label" data-i18n="lbl_docs">Pièces Justificatives (PDF, JPG, PNG - Max 5MB)</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="cvFile" required accept=".pdf,.doc,.docx,.jpg,.png" onchange="updateFileName(this, 'cvName')">
+                                <div class="file-upload-label">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    <span id="cvName" data-i18n="up_cv">Téléverser votre CV (Curriculum Vitae) *</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="permisFile" required accept=".pdf,.jpg,.png" onchange="updateFileName(this, 'permisName')">
+                                <div class="file-upload-label">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    <span id="permisName" data-i18n="up_license">Copie du Permis de Conduire (Recto/Verso) *</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mention sur les Frais Administratifs Conforme -->
+                    <div class="fees-disclaimer">
+                        <p style="margin-bottom: 8px;">
+                            <strong><i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="fee_title">Information Réglementaire Importante concernant le Traitement du Dossier :</span></strong>
+                        </p>
+                        <p data-i18n="fee_desc_1">
+                            En cas de sélection initiale de votre dossier, des frais administratifs de constitution de dossier de <strong>20 USD</strong> (ou équivalent local) peuvent être requis pour couvrir les coûts de vérification documentaire et de légalisation administrative.
+                        </p>
+                        <p style="margin-top: 8px; font-weight: 600; color: #FFF;" data-i18n="fee_desc_2">
+                            AVERTISSEMENT LÉGAL : Le paiement des frais administratifs ne garantit ni l’embauche ni l’obtention d’un contrat de travail.
+                        </p>
+                    </div>
+
+                    <button type="submit" class="btn btn-gold" style="width: 100%;">
+                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_submit_app">Envoyer ma candidature</span>
+                    </button>
+                </form>
+
+                <div id="successMessage" class="alert-success">
+                    <i class="fa-solid fa-circle-check" style="font-size: 2rem; display: block; margin-bottom: 10px;"></i>
+                    <h3 style="color: #FFF; margin-bottom: 5px;" data-i18n="success_title">Candidature Enregistrée !</h3>
+                    <p data-i18n="success_desc">Votre candidature a bien été reçue. Notre équipe RH examinera votre dossier avec attention et vous contactera si votre profil correspond à nos besoins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 7: FAQ (FOIRE AUX QUESTIONS)
+         ========================================================================== -->
+    <section id="faq" class="page">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle" data-i18n="faq_sub">Information & Transparence</span>
+                <h2 class="section-title" data-i18n="faq_title">Foire Aux Questions</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span data-i18n="faq_q1">Qui peut postuler aux offres de recrutement ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_a1">Tout conducteur professionnel titulaire d'un permis de conduire B, BE, C, CE, D ou DE valide, résidant au Maghreb ou en Afrique, et possédant la capacité de voyager à l'international.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span data-i18n="faq_q2">Quels permis de conduire sont acceptés ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_a2">Nous acceptons toutes les catégories de permis de conduire professionnelles : Voitures (B/BE), Poids Lourds (C1/C1E/C/CE) et Autocars/Bus (D1/D1E/D/DE). Les permis moto ne sont pas acceptés pour nos postes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 8: CONTACT
+         ========================================================================== -->
+    <section id="contact" class="page">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle" data-i18n="contact_sub">Support & Information</span>
+                <h2 class="section-title" data-i18n="contact_title">Contactez Nos Services</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="card-title" style="color: var(--accent-gold); margin-bottom: 20px;" data-i18n="contact_info_title">Coordonnées Officielles</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;"><i class="fa-solid fa-location-dot" style="color: var(--accent-gold);"></i> Tanger Med, Zone Franche Logistique, Maroc</p>
+                    <p style="color: var(--text-muted); margin-bottom: 15px;"><i class="fa-solid fa-phone" style="color: var(--accent-gold);"></i> +212 522 000 000 / +33 1 00 00 00 00</p>
+                    <p style="color: var(--text-muted);"><i class="fa-solid fa-envelope" style="color: var(--accent-gold);"></i> contact@transeuro-logistics.com</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title" style="margin-bottom: 20px;" data-i18n="contact_form_title">Envoyer un message</h3>
+                    <form onsubmit="alert('Message envoyé avec succès'); return false;">
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Nom" required></div>
+                        <div class="form-group"><input type="email" class="form-control" placeholder="Email" required></div>
+                        <div class="form-group"><textarea class="form-control" rows="3" placeholder="Message" required></textarea></div>
+                        <button type="submit" class="btn btn-gold" style="width:100%;" data-i18n="btn_send">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGES STATIQUES: PRIVACY / TERMS / REFUND / ADMIN -->
+    <section id="privacy" class="page"><div class="container"><div class="legal-content"><h3>Privacy Policy / Politique de Confidentialité</h3><p>Vos données sont protégées par le système SSL.</p></div></div></section>
+    <section id="terms" class="page"><div class="container"><div class="legal-content"><h3>Terms of Service / Conditions Générales</h3><p>Conditions d'utilisation des services de transport et recrutement.</p></div></div></section>
+    <section id="refund" class="page"><div class="container"><div class="legal-content"><h3>Refund Policy / Politique de Remboursement</h3><p>Informations sur les frais administratifs non garantissant l'embauche.</p></div></div></section>
+    <section id="admin" class="page">
+        <div class="container">
+            <!-- Modern Responsive Admin Dashboard -->
+            <div id="adminAuthBlock" class="card" style="max-width: 450px; margin: 40px auto; padding: 40px;">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--accent-gold);"><i class="fa-solid fa-lock"></i> Connexion Admin</h3>
+                <form onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">Identifiant Administrateur</label>
+                        <input type="text" id="adminUser" class="form-control" required placeholder="admin">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mot de passe</label>
+                        <input type="password" id="adminPass" class="form-control" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 10px;">Se connecter</button>
+                </form>
+            </div>
+
+            <div id="adminMainDashboard" class="admin-dashboard-container" style="display: none;">
+                <!-- Sidebar Navigation -->
+                <div class="admin-sidebar">
+                    <div style="font-family: 'Montserrat', sans-serif; font-weight: 800; color: #FFF; font-size: 1.1rem; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-user-shield" style="color: var(--accent-gold);"></i> Dashboard Admin
+                    </div>
+                    <div class="admin-sidebar-menu">
+                        <div class="admin-menu-item active" onclick="switchAdminTab('stats')"><i class="fa-solid fa-chart-pie"></i> Vue Générale</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('candidates')"><i class="fa-solid fa-users"></i> Candidats & Chauffeurs</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('applications')"><i class="fa-solid fa-file-signature"></i> Demandes d'Emploi</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('docs')"><i class="fa-solid fa-passport"></i> Vérification Documents</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('licenses')"><i class="fa-solid fa-id-card"></i> Gestion des Permis</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('partners')"><i class="fa-solid fa-handshake"></i> Entreprises Partenaires</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('jobs')"><i class="fa-solid fa-briefcase"></i> Offres d'Emploi</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('payments')"><i class="fa-solid fa-credit-card"></i> Paiements & Frais</div>
+                        <div class="admin-menu-item" onclick="switchAdminTab('history')"><i class="fa-solid fa-clock-rotate-left"></i> Historique Actions</div>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="handleAdminLogout()" style="margin-top: auto; width: 100%;">
+                        <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+                    </button>
+                </div>
+
+                <!-- Main Section Display -->
+                <div class="admin-main-content">
+                    <div class="admin-topbar">
+                        <div>
+                            <h3 id="adminSectionTitle" style="font-size: 1.4rem;">Tableau de Bord Général</h3>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);">Plateforme Internationale de Transport & Recrutement</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="position: relative;">
+                                <i class="fa-solid fa-bell" style="font-size: 1.2rem; color: var(--accent-gold); cursor: pointer;"></i>
+                                <span style="position: absolute; top: -5px; right: -5px; background: var(--status-danger); color: white; border-radius: 50%; width: 15px; height: 15px; font-size: 0.65rem; display: flex; align-items: center; justify-content: center;">3</span>
+                            </div>
+                            <div style="font-size: 0.85rem; border-left: 1px solid var(--border-color); padding-left: 15px;">
+                                <strong style="color: #FFF;">Admin Principal</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1. Stats Block -->
+                    <div id="tab-stats" class="admin-section-block active">
+                        <div class="admin-stats-grid">
+                            <div class="admin-stat-card">
+                                <div>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">Candidatures Totales</span>
+                                    <h2 style="font-size: 1.8rem; margin-top: 5px;">1,420</h2>
+                                </div>
+                                <div class="admin-stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">Dossiers En Attente</span>
+                                    <h2 style="font-size: 1.8rem; margin-top: 5px; color: var(--status-review);">312</h2>
+                                </div>
+                                <div class="admin-stat-icon" style="background: rgba(245,158,11,0.15); color: #F59E0B;"><i class="fa-solid fa-hourglass-half"></i></div>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">Chauffeurs Validés</span>
+                                    <h2 style="font-size: 1.8rem; margin-top: 5px; color: var(--status-success);">850</h2>
+                                </div>
+                                <div class="admin-stat-icon" style="background: rgba(16,185,129,0.15); color: #10B981;"><i class="fa-solid fa-circle-check"></i></div>
+                            </div>
+                            <div class="admin-stat-card">
+                                <div>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted);">Partenaires Actifs</span>
+                                    <h2 style="font-size: 1.8rem; margin-top: 5px; color: var(--accent-gold);">45</h2>
+                                </div>
+                                <div class="admin-stat-icon"><i class="fa-solid fa-building"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Global Overview Table -->
+                        <div class="admin-wrapper" style="margin-top: 0;">
+                            <h4 style="margin-bottom: 15px; color: #FFF;">Dernières Candidatures Reçues</h4>
+                            <div class="admin-table-container">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Candidat</th>
+                                            <th>Permis</th>
+                                            <th>Pays</th>
+                                            <th>Statut</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#TR-8091</td>
+                                            <td>Karim El Amrani</td>
+                                            <td>Permis CE (Super Lourd)</td>
+                                            <td>Maroc 🇲🇦</td>
+                                            <td><span class="status-badge status-pending">En attente</span></td>
+                                            <td><button class="btn btn-outline btn-sm" onclick="viewDriverProfile('Karim El Amrani', 'Permis CE', 'Maroc', 'En attente')">Consulter</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#TR-8090</td>
+                                            <td>Youssef Benali</td>
+                                            <td>Tous Permis (B, C, CE, D)</td>
+                                            <td>Algérie 🇩🇿</td>
+                                            <td><span class="status-badge status-in-progress">En cours</span></td>
+                                            <td><button class="btn btn-outline btn-sm" onclick="viewDriverProfile('Youssef Benali', 'Tous Permis', 'Algérie', 'En cours')">Consulter</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#TR-8089</td>
+                                            <td>Ahmed Mansouri</td>
+                                            <td>Permis C (Poids Lourd)</td>
+                                            <td>Tunisie 🇹🇳</td>
+                                            <td><span class="status-badge status-validated">Validé</span></td>
+                                            <td><button class="btn btn-outline btn-sm" onclick="viewDriverProfile('Ahmed Mansouri', 'Permis C', 'Tunisie', 'Validé')">Consulter</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Candidates & Drivers -->
+                    <div id="tab-candidates" class="admin-section-block">
+                        <div class="admin-controls">
+                            <input type="text" class="form-control admin-search" placeholder="Rechercher par nom, ville ou téléphone...">
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Filtrer par Pays</option>
+                                <option>Maroc</option>
+                                <option>Algérie</option>
+                                <option>Tunisie</option>
+                            </select>
+                        </div>
+                        <div class="admin-table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom Complet</th>
+                                        <th>Téléphone</th>
+                                        <th>Permis</th>
+                                        <th>Expérience</th>
+                                        <th>Profil Détail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Karim El Amrani</td>
+                                        <td>+212 661 000000</td>
+                                        <td>Permis CE</td>
+                                        <td>8 ans</td>
+                                        <td><button class="btn btn-gold btn-sm" onclick="viewDriverProfile('Karim El Amrani', 'Permis CE', 'Maroc', 'En attente')">Voir Profil</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mourad Haddad</td>
+                                        <td>+213 550 000000</td>
+                                        <td>Permis DE</td>
+                                        <td>12 ans</td>
+                                        <td><button class="btn btn-gold btn-sm" onclick="viewDriverProfile('Mourad Haddad', 'Permis DE', 'Algérie', 'Validé')">Voir Profil</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 3. Applications -->
+                    <div id="tab-applications" class="admin-section-block">
+                        <div class="admin-controls">
+                            <input type="text" class="form-control admin-search" placeholder="Filtrer les demandes...">
+                            <select class="form-control" style="width: auto;">
+                                <option value="">Tous les statuts</option>
+                                <option>En attente</option>
+                                <option>En cours</option>
+                                <option>Validé</option>
+                                <option>Refusé</option>
+                            </select>
+                        </div>
+                        <div class="admin-table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID Dossier</th>
+                                        <th>Candidat</th>
+                                        <th>Date Envoi</th>
+                                        <th>Statut Dossier</th>
+                                        <th>Modifier Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#APP-2026-01</td>
+                                        <td>Sami Trabelsi</td>
+                                        <td>24/09/2026</td>
+                                        <td><span class="status-badge status-pending">En attente</span></td>
+                                        <td>
+                                            <select class="status-select" onchange="alert('Statut mis à jour')">
+                                                <option>En attente</option>
+                                                <option>En cours</option>
+                                                <option>Validé</option>
+                                                <option>Refusé</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 4. Document Verification -->
+                    <div id="tab-docs" class="admin-section-block">
+                        <h4 style="color: #FFF;">Vérification des Documents Administratifs</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Contrôle de la validité de la CIN, du Permis de Conduire et des certificats d'expérience.</p>
+                        <div class="admin-table-container" style="margin-top: 15px;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Candidat</th>
+                                        <th>Document CIN</th>
+                                        <th>Permis de Conduire</th>
+                                        <th>Photo Identité</th>
+                                        <th>Validation RH</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Karim El Amrani</td>
+                                        <td><button class="btn btn-outline btn-sm"><i class="fa-solid fa-download"></i> CIN.pdf</button></td>
+                                        <td><button class="btn btn-outline btn-sm"><i class="fa-solid fa-download"></i> Permis.jpg</button></td>
+                                        <td><button class="btn btn-outline btn-sm"><i class="fa-solid fa-eye"></i> Photo.png</button></td>
+                                        <td>
+                                            <button class="btn btn-gold btn-sm" onclick="alert('Document validé')"><i class="fa-solid fa-check"></i> Valider</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 5. License Types -->
+                    <div id="tab-licenses" class="admin-section-block">
+                        <h4 style="color: #FFF;">Gestion des Permis & Catégories Acceptées</h4>
+                        <div class="grid-3" style="margin-top: 15px;">
+                            <div class="card" style="padding: 20px;">
+                                <h4 style="color: var(--accent-gold);">Permis B / BE</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Véhicules légers et utilitaires de livraison rapide.</p>
+                            </div>
+                            <div class="card" style="padding: 20px;">
+                                <h4 style="color: var(--accent-gold);">Permis C / CE</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Poids lourds rigides et semi-remorques articulées.</p>
+                            </div>
+                            <div class="card" style="padding: 20px;">
+                                <h4 style="color: var(--accent-gold);">Permis D / DE</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Autocars grand tourisme et transport en commun.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Partners International Section -->
+                    <div id="tab-partners" class="admin-section-block">
+                        <div>
+                            <h4 style="color: #FFF;">Réseau d'Entreprises Partenaires Internationales</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">
+                                Notre plateforme collabore avec un réseau étendu de grands groupes internationaux spécialisés dans la logistique, le transport routier transfrontalier et le fret maritime.
+                            </p>
+                        </div>
+                        <div class="grid-3" style="margin-top: 15px;">
+                            <div class="partner-logo-box">
+                                <div class="partner-icon-wrapper"><i class="fa-solid fa-globe"></i></div>
+                                <h4 style="color: #FFF;">EuroExpress Network</h4>
+                                <span class="badge badge-gold">Transport Routier Européen</span>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Réseau logistique couvrant la France, l'Espagne et le Benelux.</p>
+                            </div>
+                            <div class="partner-logo-box">
+                                <div class="partner-icon-wrapper"><i class="fa-solid fa-ship"></i></div>
+                                <h4 style="color: #FFF;">TransMaritime Global</h4>
+                                <span class="badge badge-gold">Fret & Traversées Maritimes</span>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Liaisons maritimes régulières entre l'Afrique du Nord et l'Europe.</p>
+                            </div>
+                            <div class="partner-logo-box">
+                                <div class="partner-icon-wrapper"><i class="fa-solid fa-snowflake"></i></div>
+                                <h4 style="color: #FFF;">CoolChain Logistics</h4>
+                                <span class="badge badge-gold">Spécialiste Frigorifique</span>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Transport sous température dirigée pour produits agroalimentaires.</p>
+                            </div>
+                            <div class="partner-logo-box">
+                                <div class="partner-icon-wrapper"><i class="fa-solid fa-warehouse"></i></div>
+                                <h4 style="color: #FFF;">Atlas Supply Chain</h4>
+                                <span class="badge badge-gold">Entreposage Maghreb</span>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Plateformes de stockage et transit à Tanger, Alger et Tunis.</p>
+                            </div>
+                            <div class="partner-logo-box">
+                                <div class="partner-icon-wrapper"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                                <h4 style="color: #FFF;">Iberia Freight Solutions</h4>
+                                <span class="badge badge-gold">Distribution Péninsule Ibérique</span>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Opérations de transit routier rapide via Algésiras et Valence.</p>
+                            </div>
+                            <div class="partner-logo-box">
+                                <div class="partner-icon-wrapper"><i class="fa-solid fa-route"></i></div>
+                                <h4 style="color: #FFF;">EuroRoute Haulage</h4>
+                                <span class="badge badge-gold">Grand Tonnage & Lignes Fixes</span>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Corridors logistiques internationaux vers l'Allemagne et l'Italie.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Job Offers -->
+                    <div id="tab-jobs" class="admin-section-block">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h4 style="color: #FFF;">Gestion des Offres d'Emploi</h4>
+                            <button class="btn btn-gold btn-sm" onclick="alert('Ajouter une offre')"><i class="fa-solid fa-plus"></i> Publier une offre</button>
+                        </div>
+                        <div class="admin-table-container" style="margin-top: 15px;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Intitulé de l'offre</th>
+                                        <th>Axe / Zone</th>
+                                        <th>Postes Ouverts</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chauffeur Super Lourd (CE) - Frigo</td>
+                                        <td>Maroc ↔ Espagne / France</td>
+                                        <td>500 postes</td>
+                                        <td><span class="status-badge status-validated">Actif</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 8. Payments -->
+                    <div id="tab-payments" class="admin-section-block">
+                        <h4 style="color: #FFF;">Gestion des Transactions & Frais Administratifs</h4>
+                        <div class="admin-table-container" style="margin-top: 15px;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction ID</th>
+                                        <th>Candidat</th>
+                                        <th>Montant</th>
+                                        <th>Mode de Paiement</th>
+                                        <th>Statut Paiement</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#TXN-9901</td>
+                                        <td>Karim El Amrani</td>
+                                        <td>20 USD</td>
+                                        <td>Carte Bancaire / Virement</td>
+                                        <td><span class="status-badge status-validated">Payé</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 9. History -->
+                    <div id="tab-history" class="admin-section-block">
+                        <h4 style="color: #FFF;">Historique des Actions Administrateur</h4>
+                        <ul style="margin-top: 15px; color: var(--text-muted); font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px;">
+                            <li style="background: var(--bg-card); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);"><i class="fa-solid fa-clock" style="color: var(--accent-gold);"></i> 26/09/2026 10:15 - Validation du dossier #TR-8089 (Ahmed Mansouri) par Admin.</li>
+                            <li style="background: var(--bg-card); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);"><i class="fa-solid fa-clock" style="color: var(--accent-gold);"></i> 26/09/2026 09:30 - Ajout d'une nouvelle entreprise partenaire (CoolChain Logistics).</li>
+                        </ul>
+                    </div>
+
+                    <!-- Profile Modal Component (Driver Details) -->
+                    <div id="driverProfileModal" style="display: none; background: var(--bg-card); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 25px; margin-top: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px;">
+                            <h4 style="color: var(--accent-gold);"><i class="fa-solid fa-id-card"></i> Profil Détaillé du Chauffeur</h4>
+                            <button class="btn btn-outline btn-sm" onclick="closeDriverProfile()">Fermer</button>
+                        </div>
+                        <div class="grid-2">
+                            <div>
+                                <p><strong>Nom Complet :</strong> <span id="profName">-</span></p>
+                                <p><strong>Permis Détendu :</strong> <span id="profLicense">-</span></p>
+                                <p><strong>Pays :</strong> <span id="profCountry">-</span></p>
+                                <p><strong>Statut Actuel :</strong> <span id="profStatus" class="status-badge status-pending">-</span></p>
+                            </div>
+                            <div>
+                                <p><strong>Documents Associés :</strong></p>
+                                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                                    <button class="btn btn-outline btn-sm"><i class="fa-solid fa-file-pdf"></i> CV.pdf</button>
+                                    <button class="btn btn-outline btn-sm"><i class="fa-solid fa-image"></i> Permis.jpg</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#accueil" class="logo" onclick="navigateTo('accueil')">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        TRANSEURO<span>LOGISTICS</span>
+                    </a>
+                    <p data-i18n="footer_brand_desc">Société spécialisée dans le transport routier international et la logistique Afrique du Nord – Europe.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title" data-i18n="nav_home">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#accueil" onclick="navigateTo('accueil')" data-i18n="nav_home">Accueil</a></li>
+                        <li><a href="#apropos" onclick="navigateTo('apropos')" data-i18n="nav_about">À Propos</a></li>
+                        <li><a href="#services" onclick="navigateTo('services')" data-i18n="nav_services">Nos Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title" data-i18n="nav_jobs">Recrutement</h4>
+                    <ul class="footer-links">
+                        <li><a href="#recrutement" onclick="navigateTo('recrutement')" data-i18n="nav_jobs">Offres d'emploi</a></li>
+                        <li><a href="#candidature" onclick="navigateTo('candidature')" data-i18n="nav_apply">Candidature</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title" data-i18n="footer_legal">Légal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#privacy" onclick="navigateTo('privacy')">Privacy Policy</a></li>
+                        <li><a href="#terms" onclick="navigateTo('terms')">Terms</a></li>
+                        <li><a href="#refund" onclick="navigateTo('refund')">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 TransEuro-Logistics. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         JAVASCRIPT & INTERNATIONALIZATION (I18N) ENGINE
+         ========================================================================== -->
+    <script>
+        // Dictionary for Multi-language Support (FR, AR, EN)
+        const i18nData = {
+            fr: {
+                badge_certified: "Transporteur Agréé CEMT / TIR",
+                nav_home: "Accueil",
+                nav_about: "À Propos",
+                nav_services: "Nos Services",
+                nav_fleet: "Notre Flotte",
+                nav_jobs: "Recrutement",
+                nav_faq: "FAQ",
+                nav_contact: "Contact",
+                nav_apply: "Postuler",
+                hero_badge: "Leader du Transport Transcontinental",
+                hero_title: "Transport International & Logistique <span>Euro-Africaine</span>",
+                hero_desc: "Des solutions fiables, sécurisées et optimisées pour le transport de marchandises sous température dirigée et fret sec entre l'Afrique du Nord (Maroc, Algérie, Tunisie) et l'Union Européenne.",
+                btn_discover: "Découvrir nos services",
+                btn_jobs: "Voir les offres d'emploi",
+                stat_1: "Traçabilité GPS en temps réel",
+                stat_2: "Traversées maritimes mensuelles",
+                stat_3: "Flotte moderne et éco-responsable",
+                stat_4: "Assistance & Suivi douanier",
+                about_subtitle: "Excellence & Fiabilité",
+                about_title: "Le pont logistique entre deux continents",
+                about_text: "TransEuro-Logistics opère au cœur des flux commerciaux stratégiques reliant le Maghreb à l'Europe. Grâce à une maîtrise parfaite des corridors routiers et maritimes, nous garantissons l'intégrité de vos marchandises.",
+                about_p1: "Gestion intégrée des formalités douanières.",
+                about_p2: "Respect strict des standards ATP et normes de sécurité.",
+                about_p3: "Équipe multilingue dédiée au suivi opérationnel.",
+                btn_learn_more: "En savoir plus sur la société",
+                serv_subtitle: "Nos Domaines d'Expertise",
+                serv_title: "Services Logistiques Sur-Mesure",
+                serv_1_t: "Transport Routier FTL / LTL",
+                serv_1_d: "Solutions complètes ou groupage adaptées au volume de vos marchandises à travers toute l'Europe et l'Afrique du Nord.",
+                serv_2_t: "Transport Frigorifique (Frigo)",
+                serv_2_d: "Maintien rigoureux de la chaîne du froid pour les produits agroalimentaires et pharmaceutiques.",
+                serv_3_t: "Logistique & Entreposage",
+                serv_3_d: "Plateformes logistiques sécurisées aux points stratégiques (Tanger, Algésiras, Lyon, Rotterdam).",
+                cta_badge: "Campagne d'expansion",
+                cta_title: "Nous recrutons des Conducteurs Routiers",
+                cta_desc: "Dans le cadre du développement de notre flotte internationale, nous ouvrons régulièrement des opportunités pour les conducteurs résidant au Maroc, en Algérie et en Tunisie.",
+                cta_btn: "Consulter le plan de recrutement",
+                form_sub: "Dossier de Candidature",
+                form_title: "Formulaire de Recrutement",
+                form_desc: "Veuillez remplir tous les champs et sélectionner votre/vos catégorie(s) de permis de conduire (Voitures, Poids Lourds, Bus, Remorques - Hors Motos).",
+                lbl_firstname: "Prénom *",
+                lbl_lastname: "Nom *",
+                lbl_dob: "Date de Naissance *",
+                lbl_country: "Pays de Résidence *",
+                opt_select_country: "Sélectionner un pays",
+                opt_other_africa: "Autre pays africain",
+                lbl_city: "Ville de Résidence *",
+                lbl_phone: "Numéro de Téléphone *",
+                lbl_email: "Adresse E-mail Officielle *",
+                lbl_license: "Catégorie(s) de Permis de Conduire Détentue(s) *",
+                opt_select_license: "-- Sélectionner votre permis principal --",
+                grp_light: "Véhicules Légers & Voitures",
+                grp_heavy: "Poids Lourds & Transport de Marchandises",
+                grp_bus: "Transport en Commun & Autocars / Bus",
+                grp_multi: "Combinaisons Multi-Permis",
+                lbl_exp: "Années d'Expérience *",
+                exp_1: "Moins de 2 ans", exp_2: "2 à 5 ans", exp_3: "5 à 10 ans", exp_4: "Plus de 10 ans",
+                lbl_exp_int: "Expérience en Transport International *",
+                opt_yes: "Oui", opt_no: "Non",
+                lbl_docs: "Pièces Justificatives (PDF, JPG, PNG - Max 5MB)",
+                up_cv: "Téléverser votre CV (Curriculum Vitae) *",
+                up_license: "Copie du Permis de Conduire (Recto/Verso) *",
+                fee_title: "Information Réglementaire Importante concernant le Traitement du Dossier :",
+                fee_desc_1: "En cas de sélection initiale, des frais administratifs de 20 USD peuvent être requis pour couvrir les coûts de vérification documentaire.",
+                fee_desc_2: "AVERTISSEMENT LÉGAL : Le paiement des frais administratifs ne garantit ni l’embauche ni l’obtention d’un contrat de travail.",
+                btn_submit_app: "Envoyer ma candidature",
+                success_title: "Candidature Enregistrée !",
+                success_desc: "Votre candidature a bien été reçue. Notre équipe RH examinera votre dossier avec attention.",
+                rec_sub: "Opportunités de Carrière", rec_title: "Recrutement – Conducteurs & Chauffeurs", rec_desc: "Plan de renforcement du capital humain.",
+                job_badge: "Avis Officiel de Recrutement", job_title: "Conducteur / Chauffeur Routier International (H/F)", job_axis: "Axe : Afrique du Nord ↔ Europe",
+                job_apply_btn: "Déposer sa candidature", meta_volume_lbl: "Volume de postes", meta_volume_val: "Jusqu'à 1 500 postes",
+                meta_target_lbl: "Pays cibles", meta_contract_lbl: "Type de contrat", meta_contract_val: "CDI / Réglementaire",
+                missions_title: "Missions Principales", m_1: "Transport international de marchandises.", m_2: "Respect des réglementations routières.", m_3: "Inspection technique préventive.",
+                salary_title: "Rémunération & Avantages", sal_box_title: "Information Transparentes", sal_box_text: "Déterminé selon le poste, l'expérience et le type de permis.",
+                about_sec_sub: "Identité & Engagement", about_sec_title: "À Propos de TransEuro-Logistics", about_sec_desc: "Un acteur structuré, transparent et moderne.",
+                who_we_are_title: "Qui sommes-nous ?", who_we_are_text_1: "Spécialiste du transport routier international Afrique du Nord - Europe.", who_we_are_text_2: "Gestion rigoureuse et conformité douanière.",
+                zones_title: "Zones d'Intervention", zones_text: "Corridors stratégiques Maghreb - Europe.", zone_na: "Afrique du Nord :", zone_eu: "Europe :",
+                serv_page_sub: "Solutions Métiers", serv_page_title: "Nos Services Logistiques", serv_page_desc: "Prestations pour chargeurs industriels.",
+                fleet_sub: "Matériel & Équipement", fleet_title: "Notre Flotte de Véhicules", fleet_desc: "Parc moderne et entretenu.",
+                truck_1_title: "Tracteurs Routiers Euro 6", truck_1_desc: "Véhicules récents grand confort.", truck_2_title: "Semi-Remorques Frigorifiques", truck_2_desc: "Groupes frigorifiques certifiés ATP.",
+                faq_sub: "Information & Transparence", faq_title: "Foire Aux Questions",
+                faq_q1: "Qui peut postuler aux offres de recrutement ?", faq_a1: "Tout conducteur titulaire d'un permis B, BE, C, CE, D ou DE valide.",
+                faq_q2: "Quels permis de conduire sont acceptés ?", faq_a2: "Toutes les catégories professionnelles (Voitures, Poids Lourds, Bus). Hors Motos.",
+                contact_sub: "Support & Information", contact_title: "Contactez Nos Services", contact_info_title: "Coordonnées Officielles", contact_form_title: "Envoyer un message", btn_send: "Envoyer",
+                footer_brand_desc: "Transport routier international Afrique du Nord – Europe.", footer_legal: "Légal"
+            },
+            ar: {
+                badge_certified: "ناقل معتمد CEMT / TIR",
+                nav_home: "الرئيسية",
+                nav_about: "من نحن",
+                nav_services: "خدماتنا",
+                nav_fleet: "أسطولنا",
+                nav_jobs: "التوظيف",
+                nav_faq: "الأسئلة الشائعة",
+                nav_contact: "اتصل بنا",
+                nav_apply: "تقديم الطلب",
+                hero_badge: "رائد النقل عبر القارات",
+                hero_title: "النقل الدولي واللوجستيات <span>الأورو-أفريقية</span>",
+                hero_desc: "حلول موثوقة وآمنة ومحسنة لنقل البضائع المبردة والجافة بين شمال أفريقيا (المغرب، الجزائر، تونس) والاتحاد الأوروبي.",
+                btn_discover: "اكتشف خدماتنا",
+                btn_jobs: "عرض فرص العمل",
+                stat_1: "تتبع GPS في الوقت الفعلي",
+                stat_2: "رحلات بحرية شهرياً",
+                stat_3: "أسطول حديث وصديق للبيئة",
+                stat_4: "مساعدة ومتابعة جمركية 24/7",
+                about_subtitle: "التميز والموثوقية",
+                about_title: "الجسر اللوجستي بين قارتين",
+                about_text: "تعمل TransEuro-Logistics في قلب التدفقات التجارية الاستراتيجية التي تربط المغرب العربي بأوروبا. بفضل التحكم الكامل في الممرات البرية والبحرية، نضمن سلامة بضائعكم.",
+                about_p1: "إدارة متكاملة للإجراءات الجمركية.",
+                about_p2: "الالتزام الصارم بمعايير ATP وسلاسل التبريد.",
+                about_p3: "فريق متعدد اللغات مخصص للمتابعة التشغيلية.",
+                btn_learn_more: "معرفة المزيد عن الشركة",
+                serv_subtitle: "مجالات خبرتنا",
+                serv_title: "خدمات لوجستية مخصصة",
+                serv_1_t: "النقل البري FTL / LTL",
+                serv_1_d: "حلول نقل كامل أو جزئي تتناسب مع حجم بضائعكم عبر جميع أنحاء أوروبا وشمال أفريقيا.",
+                serv_2_t: "النقل المبرد",
+                serv_2_d: "الحفاظ الصارم على سلسلة التبريد للمنتجات الغذائية والطبية.",
+                serv_3_t: "اللوجستيات والتخزين",
+                serv_3_d: "منصات لوجستية آمنة في نقاط استراتيجية (طنجة، الخضراء، ليون، روتردام).",
+                cta_badge: "حملة التوسع",
+                cta_title: "نحن ننتقي وسائقين محترفين",
+                cta_desc: "في إطار تطوير أسطولنا الدولي، نفتح بانتظام فرصاً للسائقين المقيمين في المغرب والجزائر وتونس.",
+                cta_btn: "الاطلاع على خطة التوظيف",
+                form_sub: "ملف الترشيح",
+                form_title: "استمارة التوظيف",
+                form_desc: "يرجى ملء جميع الحقول وتحديد فئة (فئات) رخصة السياقة التي تمتلكها (سيارات، شاحنات ثقيلة، حافلات، مقطورات - باستثناء الدراجات النارية).",
+                lbl_firstname: "الاسم الشخصي *",
+                lbl_lastname: "الاسم العائلي *",
+                lbl_dob: "تاريخ الميلاد *",
+                lbl_country: "بلد الإقامة *",
+                opt_select_country: "اختر البلد",
+                opt_other_africa: "دولة أفريقية أخرى",
+                lbl_city: "مدينة الإقامة *",
+                lbl_phone: "رقم الهاتف *",
+                lbl_email: "البريد الإلكتروني الرسمي *",
+                lbl_license: "فئة (فئات) رخصة السياقة *",
+                opt_select_license: "-- اختر رخصتك الرئيسية --",
+                grp_light: "السيارات والمركبات الخفيفة",
+                grp_heavy: "الشاحنات الثقيلة ونقل البضائع",
+                grp_bus: "النقل العمومي والحافلات",
+                grp_multi: "تجميعة رخص متعددة",
+                lbl_exp: "سنوات الخبرة العامة *",
+                exp_1: "أقل من سنتين", exp_2: "من 2 إلى 5 سنوات", exp_3: "من 5 إلى 10 سنوات", exp_4: "أكثر من 10 سنوات",
+                lbl_exp_int: "خبرة في النقل الدولي *",
+                opt_yes: "نعم", opt_no: "لا",
+                lbl_docs: "الوثائق الداعمة (PDF, JPG, PNG - حد أقصى 5MB)",
+                up_cv: "تحميل السيرة الذاتية (CV) *",
+                up_license: "نسخة رخصة السياقة (الوجهين) *",
+                fee_title: "معلومات تنظيمية هامة بشأن معالجة الملف:",
+                fee_desc_1: "في حالة الاختيار الأول لملفك، قد تتطلب معالجة الملف رسوماً إدارية قدرها 20 دولارًا أمريكيًا لغطاء تكاليف التحقق والتوثيق.",
+                fee_desc_2: "تحذير قانوني: دفع الرسوم الإدارية لا يضمن التوظيف أو الحصول على عقد عمل.",
+                btn_submit_app: "إرسال الطلب",
+                success_title: "تم تسجيل الطلب بنجاح!",
+                success_desc: "لقد استلمنا طلبك بنجاح. سيقوم فريق الموارد البشرية بدراسة ملفك بعناية.",
+                rec_sub: "فرص عمل", rec_title: "التوظيف – سائقين وموجهين", rec_desc: "خطة تعزيز الرصيد البشري.",
+                job_badge: "إعلان توظيف رسمي", job_title: "سائق نقل دولي (Routier)", job_axis: "المحور: شمال أفريقيا ↔ أوروبا",
+                job_apply_btn: "تقديم الطلب الآن", meta_volume_lbl: "عدد المناصب", meta_volume_val: "حتى 1500 منصب",
+                meta_target_lbl: "الدول المستهدفة", meta_contract_lbl: "نوع العقد", meta_contract_val: "عقد غير محدود / نظامي",
+                missions_title: "المهام الرئيسية", m_1: "النقل الدولي للبضائع بين شمال أفريقيا وأوروبا.", m_2: "الاحترام الصارم لقوانين المرور أوقات الراحة.", m_3: "الفحص التقني الوقائي للمركبة.",
+                salary_title: "الراتب والامتيازات", sal_box_title: "معلومات شفافة", sal_box_text: "يتحدد حسب المنصب، الخبرة، ونوع الرخصة.",
+                about_sec_sub: "الهوية والالتزام", about_sec_title: "عن TransEuro-Logistics", about_sec_desc: "شريك هيكلي، شفاف و his الحديث.",
+                who_we_are_title: "من نحن؟", who_we_are_text_1: "متخصصون في النقل الدولي بين شمال أفريقيا وأوروبا.", who_we_are_text_2: "إدارة صارمة وامتثال جمركي كامل.",
+                zones_title: "مناطق العمل", zones_text: "الممرات الاستراتيجية المغرب العربي - أوروبا.", zone_na: "شمال أفريقيا:", zone_eu: "أوروبا:",
+                serv_page_sub: "حلول مهنية", serv_page_title: "خدماتنا اللوجستية", serv_page_desc: "خدمات موجهة للشاحنين الصناعيين.",
+                fleet_sub: "المعدات والأسطول", fleet_title: "أسطول مركباتنا", fleet_desc: "أسطول حديث ومصان بدقة.",
+                truck_1_title: "شاحنات Euro 6", truck_1_desc: "مركبات حديثة عالية الراحة.", truck_2_title: "مقطورات مبردة", truck_2_desc: "مجموعات تبريد معتمدة ATP.",
+                faq_sub: "المعلومات والشفافية", faq_title: "الأسئلة الشائعة",
+                faq_q1: "من يمكنه التقديم لفرص التوظيف؟", faq_a1: "أي سائق مهني يحمل رخصة سياقة صالحة من فئة B, BE, C, CE, D, DE.",
+                faq_q2: "ما هي رخص السياقة المقبولة؟", faq_a2: "نقبل جميع الفئات المهنية (سيارات، شاحنات، حافلات). باستثناء الدراجات النارية.",
+                contact_sub: "الدعم والمعلومات", contact_title: "اتصل بدماتنا", contact_info_title: "المعلومات الرسمية", contact_form_title: "إرسال رسالة", btn_send: "إرسال",
+                footer_brand_desc: "النقل البري الدولي شمال أفريقيا – أوروبا.", footer_legal: "قانوني"
+            },
+            en: {
+                badge_certified: "Certified CEMT / TIR Carrier",
+                nav_home: "Home",
+                nav_about: "About Us",
+                nav_services: "Services",
+                nav_fleet: "Fleet",
+                nav_jobs: "Careers",
+                nav_faq: "FAQ",
+                nav_contact: "Contact",
+                nav_apply: "Apply Now",
+                hero_badge: "Transcontinental Transport Leader",
+                hero_title: "International Transport & <span>Euro-African</span> Logistics",
+                hero_desc: "Reliable, secure, and optimized logistics solutions for temperature-controlled and dry cargo between North Africa and the European Union.",
+                btn_discover: "Discover Services",
+                btn_jobs: "View Job Offers",
+                stat_1: "Real-time GPS Tracking",
+                stat_2: "Monthly Sea Crossings",
+                stat_3: "Modern Euro 6 Eco Fleet",
+                stat_4: "24/7 Customs Assistance",
+                about_subtitle: "Excellence & Reliability",
+                about_title: "The Logistics Bridge Between Two Continents",
+                about_text: "TransEuro-Logistics operates at the heart of strategic trade corridors connecting North Africa to Europe, ensuring total cargo integrity.",
+                about_p1: "Integrated customs formalities management.",
+                about_p2: "Strict compliance with ATP cold chain standards.",
+                about_p3: "Multilingual dedicated support team.",
+                btn_learn_more: "Learn More About Us",
+                serv_subtitle: "Areas of Expertise",
+                serv_title: "Tailored Logistics Services",
+                serv_1_t: "FTL / LTL Road Freight",
+                serv_1_d: "Full truckload and groupage transport services across Europe and North Africa.",
+                serv_2_t: "Refrigerated Transport",
+                serv_2_d: "Strict temperature-controlled transport for food and pharmaceutical products.",
+                serv_3_t: "Logistics & Warehousing",
+                serv_3_d: "Secure warehousing hubs in strategic locations (Tangier, Algeciras, Lyon, Rotterdam).",
+                cta_badge: "Expansion Campaign",
+                cta_title: "We Are Hiring Professional Drivers",
+                cta_desc: "As part of our fleet expansion, we regularly offer career opportunities for drivers based in Morocco, Algeria, and Tunisia.",
+                cta_btn: "View Recruitment Plan",
+                form_sub: "Application File",
+                form_title: "Recruitment Form",
+                form_desc: "Please fill in all required fields and select your driving license category (Cars, Trucks, Buses, Trailers - Motorcycles Excluded).",
+                lbl_firstname: "First Name *",
+                lbl_lastname: "Last Name *",
+                lbl_dob: "Date of Birth *",
+                lbl_country: "Country of Residence *",
+                opt_select_country: "Select Country",
+                opt_other_africa: "Other African Country",
+                lbl_city: "City of Residence *",
+                lbl_phone: "Phone Number *",
+                lbl_email: "Official Email Address *",
+                lbl_license: "Driving License Category *",
+                opt_select_license: "-- Select Main License --",
+                grp_light: "Light Vehicles & Passenger Cars",
+                grp_heavy: "Heavy Goods Vehicles & Freight",
+                grp_bus: "Passenger Transport & Buses",
+                grp_multi: "Multi-License Combinations",
+                lbl_exp: "Years of Experience *",
+                exp_1: "Under 2 years", exp_2: "2 to 5 years", exp_3: "5 to 10 years", exp_4: "Over 10 years",
+                lbl_exp_int: "International Transport Experience *",
+                opt_yes: "Yes", opt_no: "No",
+                lbl_docs: "Supporting Documents (PDF, JPG, PNG - Max 5MB)",
+                up_cv: "Upload CV / Resume *",
+                up_license: "Driving License Copy (Front/Back) *",
+                fee_title: "Important Regulatory Notice Regarding Application Processing:",
+                fee_desc_1: "If pre-selected, a non-refundable administrative processing fee of 20 USD may apply for document verification.",
+                fee_desc_2: "LEGAL DISCLAIMER: Payment of administrative fees does not guarantee employment.",
+                btn_submit_app: "Submit Application",
+                success_title: "Application Registered!",
+                success_desc: "Your application has been received successfully. Our HR team will review your profile.",
+                rec_sub: "Career Opportunities", rec_title: "Recruitment – Professional Drivers", rec_desc: "Human capital development plan.",
+                job_badge: "Official Recruitment Notice", job_title: "International Heavy Truck Driver (M/F)", job_axis: "Corridor: North Africa ↔ Europe",
+                job_apply_btn: "Apply Now", meta_volume_lbl: "Open Positions", meta_volume_val: "Up to 1,500 Posts",
+                meta_target_lbl: "Target Countries", meta_contract_lbl: "Contract Type", meta_contract_val: "Permanent / Regulatory",
+                missions_title: "Main Responsibilities", m_1: "International freight transport North Africa ↔ Europe.", m_2: "Strict compliance with driving rest times.", m_3: "Pre-trip vehicle inspection.",
+                salary_title: "Remuneration & Benefits", sal_box_title: "Transparent Info", sal_box_text: "Determined by role, experience, and license type.",
+                about_sec_sub: "Identity & Commitment", about_sec_title: "About TransEuro-Logistics", about_sec_desc: "A structured, transparent, and modern operator.",
+                who_we_are_title: "Who We Are", who_we_are_text_1: "Specialist in international road freight North Africa - Europe.", who_we_are_text_2: "Strict management and customs compliance.",
+                zones_title: "Operating Zones", zones_text: "Strategic corridors Maghreb - Europe.", zone_na: "North Africa:", zone_eu: "Europe:",
+                serv_page_sub: "Business Solutions", serv_page_title: "Logistics Services", serv_page_desc: "Solutions for industrial shippers.",
+                fleet_sub: "Equipment & Fleet", fleet_title: "Our Vehicle Fleet", fleet_desc: "Modern and well-maintained fleet.",
+                truck_1_title: "Euro 6 Trucks", truck_1_desc: "Recent high-comfort tractor units.", truck_2_title: "Refrigerated Semi-Trailers", truck_2_desc: "ATP-certified cooling units.",
+                faq_sub: "Information & Transparency", faq_title: "Frequently Asked Questions",
+                faq_q1: "Who can apply for job offers?", faq_a1: "Any professional driver with a valid B, BE, C, CE, D, or DE license.",
+                faq_q2: "Which driving licenses are accepted?", faq_a2: "All professional categories (Cars, Trucks, Buses). Motorcycles excluded.",
+                contact_sub: "Support & Information", contact_title: "Contact Our Team", contact_info_title: "Official Details", contact_form_title: "Send a Message", btn_send: "Send",
+                footer_brand_desc: "International road freight North Africa – Europe.", footer_legal: "Legal"
+            }
+        };
+
+        let currentLang = 'fr';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const dict = i18nData[lang];
+            if (!dict) return;
+
+            // Set HTML Direction for Arabic
+            if (lang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+            }
+
+            document.getElementById('currentLangStr').innerText = lang.toUpperCase();
+
+            // Translate Text Content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = dict[key];
+                    } else {
+                        el.innerHTML = dict[key];
+                    }
+                }
+            });
+
+            // Close Language Dropdown
+            document.getElementById('langDropdown').classList.remove('show');
+        }
+
+        function toggleLangDropdown() {
+            document.getElementById('langDropdown').classList.toggle('show');
+        }
+
+        // SPA Navigation Router
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update Nav Links Active Class
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close Mobile Menu if open
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // FAQ Accordion Toggle
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // File Upload Helper
+        function updateFileName(input, targetId) {
+            if (input.files && input.files[0]) {
+                document.getElementById(targetId).innerText = "Fichier sélectionné : " + input.files[0].name;
+            }
+        }
+
+        // Handle Application Form Submit
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            document.getElementById('applicationForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        // Admin Auth Simulation
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+            if (u === 'admin' && p === 'admin') {
+                document.getElementById('adminAuthBlock').style.display = 'none';
+                document.getElementById('adminMainDashboard').style.display = 'grid';
+            } else {
+                alert('Identifiants incorrects');
+            }
+        }
+
+        function handleAdminLogout() {
+            document.getElementById('adminMainDashboard').style.display = 'none';
+            document.getElementById('adminAuthBlock').style.display = 'block';
+        }
+
+        function switchAdminTab(tabKey) {
+            document.querySelectorAll('.admin-section-block').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.admin-menu-item').forEach(m => m.classList.remove('active'));
+            
+            const targetBlock = document.getElementById('tab-' + tabKey);
+            if (targetBlock) targetBlock.classList.add('active');
+            
+            event.currentTarget.classList.add('active');
+
+            const titles = {
+                stats: "Tableau de Bord Général",
+                candidates: "Gestion des Candidats & Chauffeurs",
+                applications: "Gestion des Demandes d'Emploi",
+                docs: "Vérification & Validation des Documents",
+                licenses: "Gestion des Permis de Conduire",
+                partners: "Entreprises Partenaires Internationales",
+                jobs: "Gestion des Offres d'Emploi",
+                payments: "Paiements & Transactions",
+                history: "Historique Complet des Actions"
+            };
+            document.getElementById('adminSectionTitle').innerText = titles[tabKey] || "Dashboard Admin";
+        }
+
+        function viewDriverProfile(name, license, country, status) {
+            document.getElementById('profName').innerText = name;
+            document.getElementById('profLicense').innerText = license;
+            document.getElementById('profCountry').innerText = country;
+            document.getElementById('profStatus').innerText = status;
+            document.getElementById('driverProfileModal').style.display = 'block';
+        }
+
+        function closeDriverProfile() {
+            document.getElementById('driverProfileModal').style.display = 'none';
+        }
+
+        // Close lang dropdown on click outside
+        window.onclick = function(e) {
+            if (!e.target.matches('.lang-btn') && !e.target.matches('.lang-btn *')) {
+                const dropdown = document.getElementById('langDropdown');
+                if (dropdown && dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
