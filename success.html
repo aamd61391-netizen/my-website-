@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Finalisée</title>
+    <!-- خط Google Font الحديث (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            padding: 48px 36px;
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+            border: 1px solid #f1f5f9;
+        }
+
+        .icon-container {
+            width: 88px;
+            height: 88px;
+            background-color: #f0fdf4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 28px auto;
+            border: 1px solid #dcfce7;
+        }
+
+        .icon-svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            background-color: #16a34a;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+        }
+
+        .btn:hover {
+            background-color: #15803d;
+            box-shadow: 0 6px 16px rgba(22, 163, 74, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .support-text {
+            margin-top: 24px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .support-text a {
+            color: #16a34a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .support-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* تنسيق النافذة المنسدلة الاحترافية لاختيار البريد أو التواصل */
+        .support-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .support-modal {
+            background: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: modalIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .support-modal h3 {
+            font-size: 20px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .support-modal p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        .support-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .support-option:hover {
+            background: #f0fdf4;
+            border-color: #16a34a;
+            color: #15803d;
+            transform: translateY(-1px);
+        }
+
+        .support-option svg {
+            width: 22px;
+            height: 22px;
+            stroke: #16a34a;
+            flex-shrink: 0;
+        }
+
+        .close-modal {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 12px;
+            cursor: pointer;
+            padding: 8px;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- SVG الاحترافي باللون الأخضر المميز -->
+        <div class="icon-container">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#16a34a" stroke-width="1.8" />
+                <path d="M8.5 12.5L11 15L15.5 9" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <h1>Inscription Réussie !</h1>
+        
+        <p>Merci pour votre confiance. Votre demande a bien été enregistrée et notre équipe vous contactera dans les plus brefs délais.</p>
+
+        <a href="index.html" class="btn">Retour à l'accueil</a>
+
+        <div class="support-text">
+            Des questions ? <a href="#" id="openSupportModal">Contactez notre support</a>
+        </div>
+    </div>
+
+    <!-- نافذة منسدلة احترافية تظهر عند الضغط -->
+    <div class="support-modal-overlay" id="supportModalOverlay">
+        <div class="support-modal">
+            <h3>Support Client</h3>
+            <p>Choisissez votre méthode de contact préférée :</p>
+            
+            <a href="mailto:Contact@ikwwtransport.com" class="support-option">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 6l-10 7L2 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Contact@ikwwtransport.com</span>
+            </a>
+
+            <button class="close-modal" id="closeSupportModal">Fermer</button>
+        </div>
+    </div>
+
+    <script>
+        const modalOverlay = document.getElementById('supportModalOverlay');
+        const openBtn = document.getElementById('openSupportModal');
+        const closeBtn = document.getElementById('closeSupportModal');
+
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modalOverlay.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modalOverlay.style.display = 'none';
+        });
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
