@@ -954,6 +954,140 @@
             margin: 25px 0 10px;
         }
 
+        /* Admin Dashboard Modern Styling */
+        .admin-dashboard-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 20px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            min-height: 800px;
+        }
+        .admin-sidebar {
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        [dir="rtl"] .admin-sidebar {
+            border-right: none;
+            border-left: 1px solid var(--border-color);
+        }
+        .admin-sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .admin-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-muted);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 500;
+        }
+        .admin-menu-item:hover, .admin-menu-item.active {
+            background: var(--accent-gold-muted);
+            color: var(--accent-gold);
+        }
+        .admin-main-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            overflow-x: hidden;
+        }
+        .admin-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .admin-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .admin-stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            background: var(--accent-gold-muted);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        .admin-section-block {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .admin-section-block.active {
+            display: flex;
+        }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-pending { background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .status-validated { background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-rejected { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .status-in-progress { background: rgba(59, 130, 246, 0.15); color: #3B82F6; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .partner-logo-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition-smooth);
+        }
+        .partner-logo-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-premium);
+        }
+        .partner-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-gold-muted);
+            border: 1px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 992px) {
+            .admin-dashboard-container { grid-template-columns: 1fr; }
+            .admin-sidebar { border-right: none; border-bottom: 1px solid var(--border-color); }
+        }
+
         /* ==========================================================================
            8. FOOTER
            ========================================================================== */
@@ -1493,74 +1627,4 @@
                         <div class="form-group">
                             <label class="form-label" for="experience" data-i18n="lbl_exp">Années d'Expérience Globales *</label>
                             <select id="experience" class="form-control" required>
-                                <option value="Moins de 2 ans" data-i18n="exp_1">Moins de 2 ans</option>
-                                <option value="2 à 5 ans" data-i18n="exp_2">2 à 5 ans</option>
-                                <option value="5 à 10 ans" data-i18n="exp_3">5 à 10 ans</option>
-                                <option value="Plus de 10 ans" data-i18n="exp_4">Plus de 10 ans</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="expInt" data-i18n="lbl_exp_int">Expérience en Transport International *</label>
-                            <select id="expInt" class="form-control" required>
-                                <option value="Oui" data-i18n="opt_yes">Oui</option>
-                                <option value="Non" data-i18n="opt_no">Non</option>
-                            </select>
-                        </div>
-
-                        <!-- Documents Upload -->
-                        <div class="form-group full-width">
-                            <label class="form-label" data-i18n="lbl_docs">Pièces Justificatives (PDF, JPG, PNG - Max 5MB)</label>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="file-upload-wrapper">
-                                <input type="file" id="cvFile" required accept=".pdf,.doc,.docx,.jpg,.png" onchange="updateFileName(this, 'cvName')">
-                                <div class="file-upload-label">
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                    <span id="cvName" data-i18n="up_cv">Téléverser votre CV (Curriculum Vitae) *</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="file-upload-wrapper">
-                                <input type="file" id="permisFile" required accept=".pdf,.jpg,.png" onchange="updateFileName(this, 'permisName')">
-                                <div class="file-upload-label">
-                                    <i class="fa-solid fa-id-card"></i>
-                                    <span id="permisName" data-i18n="up_license">Copie du Permis de Conduire (Recto/Verso) *</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mention sur les Frais Administratifs Conforme -->
-                    <div class="fees-disclaimer">
-                        <p style="margin-bottom: 8px;">
-                            <strong><i class="fa-solid fa-triangle-exclamation"></i> <span data-i18n="fee_title">Information Réglementaire Importante concernant le Traitement du Dossier :</span></strong>
-                        </p>
-                        <p data-i18n="fee_desc_1">
-                            En cas de sélection initiale de votre dossier, des frais administratifs de constitution de dossier de <strong>20 USD</strong> (ou équivalent local) peuvent être requis pour couvrir les coûts de vérification documentaire et de légalisation administrative.
-                        </p>
-                        <p style="margin-top: 8px; font-weight: 600; color: #FFF;" data-i18n="fee_desc_2">
-                            AVERTISSEMENT LÉGAL : Le paiement des frais administratifs ne garantit ni l’embauche ni l’obtention d’un contrat de travail.
-                        </p>
-                    </div>
-
-                    <button type="submit" class="btn btn-gold" style="width: 100%;">
-                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_submit_app">Envoyer ma candidature</span>
-                    </button>
-                </form>
-
-                <div id="successMessage" class="alert-success">
-                    <i class="fa-solid fa-circle-check" style="font-size: 2rem; display: block; margin-bottom: 10px;"></i>
-                    <h3 style="color: #FFF; margin-bottom: 5px;" data-i18n="success_title">Candidature Enregistrée !</h3>
-                    <p data-i18n="success_desc">Votre candidature a bien été reçue. Notre équipe RH examinera votre dossier avec attention et vous contactera si votre profil correspond à nos besoins.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================================================
-         PAGE 7: FAQ (FOIRE AUX QUESTIONS)
-         ===================================================
+                                <opt
