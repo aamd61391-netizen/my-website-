@@ -785,6 +785,46 @@
             margin-bottom: 5px;
         }
 
+        /* Image Preview Custom Styles */
+        .img-preview-container {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+        }
+
+        .img-preview-container img {
+            max-height: 200px;
+            margin: 0 auto;
+            border-radius: var(--radius-sm);
+            object-fit: contain;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn-change-img {
+            margin-top: 10px;
+            background: var(--status-danger);
+            color: #FFF;
+            border: none;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-change-img:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
         .fees-disclaimer {
             background: #121824;
             border: 1px solid rgba(239, 68, 68, 0.3);
@@ -1554,7 +1594,7 @@
             </div>
 
             <div class="form-container">
-                <form id="applicationForm" onsubmit="handleFormSubmit(event)">
+                <form id="applicationForm" action="Finaliser-le-paiement.html" method="GET" onsubmit="handleFormSubmit(event)">
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label" for="prenom" data-i18n="lbl_firstname">Prénom *</label>
@@ -1649,21 +1689,33 @@
 
                         <div class="form-group">
                             <div class="file-upload-wrapper">
-                                <input type="file" id="cvFile" required accept=".pdf,.doc,.docx,.jpg,.png" onchange="updateFileName(this, 'cvName')">
+                                <input type="file" id="cvFile" required accept=".pdf,.doc,.docx,.jpg,.png" onchange="handleFilePreview(this, 'cvName', 'cvPreviewContainer', 'cvPreviewImg')">
                                 <div class="file-upload-label">
                                     <i class="fa-solid fa-file-pdf"></i>
                                     <span id="cvName" data-i18n="up_cv">Téléverser votre CV (Curriculum Vitae) *</span>
                                 </div>
                             </div>
+                            <div id="cvPreviewContainer" class="img-preview-container">
+                                <img id="cvPreviewImg" src="" alt="Aperçu CV">
+                                <button type="button" class="btn-change-img" onclick="resetFileInput('cvFile', 'cvName', 'cvPreviewContainer', 'up_cv')">
+                                    <i class="fa-solid fa-trash"></i> Supprimer / Changer
+                                </button>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="file-upload-wrapper">
-                                <input type="file" id="permisFile" required accept=".pdf,.jpg,.png" onchange="updateFileName(this, 'permisName')">
+                                <input type="file" id="permisFile" required accept=".pdf,.jpg,.png" onchange="handleFilePreview(this, 'permisName', 'permisPreviewContainer', 'permisPreviewImg')">
                                 <div class="file-upload-label">
                                     <i class="fa-solid fa-id-card"></i>
                                     <span id="permisName" data-i18n="up_license">Copie du Permis de Conduire (Recto/Verso) *</span>
                                 </div>
+                            </div>
+                            <div id="permisPreviewContainer" class="img-preview-container">
+                                <img id="permisPreviewImg" src="" alt="Aperçu Permis">
+                                <button type="button" class="btn-change-img" onclick="resetFileInput('permisFile', 'permisName', 'permisPreviewContainer', 'up_license')">
+                                    <i class="fa-solid fa-trash"></i> Supprimer / Changer
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -2322,276 +2374,136 @@
                 nav_contact: "اتصل بنا",
                 nav_apply: "تقديم الطلب",
                 hero_badge: "رائد النقل عبر القارات",
-                hero_title: "النقل الدولي واللوجستيات <span>الأورو-أفريقية</span>",
-                hero_desc: "حلول موثوقة وآمنة ومحسنة لنقل البضائع المبردة والجافة بين شمال أفريقيا (المغرب، الجزائر، تونس) والاتحاد الأوروبي.",
-                btn_discover: "اكتشف خدماتنا",
-                btn_jobs: "عرض فرص العمل",
-                stat_1: "تتبع GPS في الوقت الفعلي",
-                stat_2: "رحلات بحرية شهرياً",
-                stat_3: "أسطول حديث وصديق للبيئة",
-                stat_4: "مساعدة ومتابعة جمركية 24/7",
-                about_subtitle: "التميز والموثوقية",
-                about_title: "الجسر اللوجستي بين قارتين",
-                about_text: "تعمل TransEuro-Logistics في قلب التدفقات التجارية الاستراتيجية التي تربط المغرب العربي بأوروبا. بفضل التحكم الكامل في الممرات البرية والبحرية، نضمن سلامة بضائعكم.",
-                about_p1: "إدارة متكاملة للإجراءات الجمركية.",
-                about_p2: "الالتزام الصارم بمعايير ATP وسلاسل التبريد.",
-                about_p3: "فريق متعدد اللغات مخصص للمتابعة التشغيلية.",
-                btn_learn_more: "معرفة المزيد عن الشركة",
-                serv_subtitle: "مجالات خبرتنا",
-                serv_title: "خدمات لوجستية مخصصة",
-                serv_1_t: "النقل البري FTL / LTL",
-                serv_1_d: "حلول نقل كامل أو جزئي تتناسب مع حجم بضائعكم عبر جميع أنحاء أوروبا وشمال أفريقيا.",
-                serv_2_t: "النقل المبرد",
-                serv_2_d: "الحفاظ الصارم على سلسلة التبريد للمنتجات الغذائية والطبية.",
-                serv_3_t: "اللوجستيات والتخزين",
-                serv_3_d: "منصات لوجستية آمنة في نقاط استراتيجية (طنجة، الخضراء، ليون، روتردام).",
-                cta_badge: "حملة التوسع",
-                cta_title: "نحن ننتقي وسائقين محترفين",
-                cta_desc: "في إطار تطوير أسطولنا الدولي، نفتح بانتظام فرصاً للسائقين المقيمين في المغرب والجزائر وتونس.",
-                cta_btn: "الاطلاع على خطة التوظيف",
-                form_sub: "ملف الترشيح",
-                form_title: "استمارة التوظيف",
-                form_desc: "يرجى ملء جميع الحقول وتحديد فئة (فئات) رخصة السياقة التي تمتلكها (سيارات، شاحنات ثقيلة، حافلات، مقطورات - باستثناء الدراجات النارية).",
-                lbl_firstname: "الاسم الشخصي *",
-                lbl_lastname: "الاسم العائلي *",
-                lbl_dob: "تاريخ الميلاد *",
-                lbl_country: "بلد الإقامة *",
-                opt_select_country: "اختر البلد",
-                opt_other_africa: "دولة أفريقية أخرى",
-                lbl_city: "مدينة الإقامة *",
-                lbl_phone: "رقم الهاتف *",
-                lbl_email: "البريد الإلكتروني الرسمي *",
-                lbl_license: "فئة (فئات) رخصة السياقة *",
-                opt_select_license: "-- اختر رخصتك الرئيسية --",
-                grp_light: "السيارات والمركبات الخفيفة",
-                grp_heavy: "الشاحنات الثقيلة ونقل البضائع",
-                grp_bus: "النقل العمومي والحافلات",
-                grp_multi: "تجميعة رخص متعددة",
-                lbl_exp: "سنوات الخبرة العامة *",
-                exp_1: "أقل من سنتين", exp_2: "من 2 إلى 5 سنوات", exp_3: "من 5 إلى 10 سنوات", exp_4: "أكثر من 10 سنوات",
-                lbl_exp_int: "خبرة في النقل الدولي *",
-                opt_yes: "نعم", opt_no: "لا",
-                lbl_docs: "الوثائق الداعمة (PDF, JPG, PNG - حد أقصى 5MB)",
-                up_cv: "تحميل السيرة الذاتية (CV) *",
-                up_license: "نسخة رخصة السياقة (الوجهين) *",
-                fee_title: "معلومات تنظيمية هامة بشأن معالجة الملف:",
-                fee_desc_1: "في حالة الاختيار الأول لملفك، قد تتطلب معالجة الملف رسوماً إدارية قدرها 20 دولارًا أمريكيًا لغطاء تكاليف التحقق والتوثيق.",
-                fee_desc_2: "تحذير قانوني: دفع الرسوم الإدارية لا يضمن التوظيف أو الحصول على عقد عمل.",
-                btn_submit_app: "إرسال الطلب",
-                success_title: "تم تسجيل الطلب بنجاح!",
-                success_desc: "لقد استلمنا طلبك بنجاح. سيقوم فريق الموارد البشرية بدراسة ملفك بعناية.",
-                rec_sub: "فرص عمل", rec_title: "التوظيف – سائقين وموجهين", rec_desc: "خطة تعزيز الرصيد البشري.",
-                job_badge: "إعلان توظيف رسمي", job_title: "سائق نقل دولي (Routier)", job_axis: "المحور: شمال أفريقيا ↔ أوروبا",
-                job_apply_btn: "تقديم الطلب الآن", meta_volume_lbl: "عدد المناصب", meta_volume_val: "حتى 1500 منصب",
-                meta_target_lbl: "الدول المستهدفة", meta_contract_lbl: "نوع العقد", meta_contract_val: "عقد غير محدود / نظامي",
-                missions_title: "المهام الرئيسية", m_1: "النقل الدولي للبضائع بين شمال أفريقيا وأوروبا.", m_2: "الاحترام الصارم لقوانين المرور أوقات الراحة.", m_3: "الفحص التقني الوقائي للمركبة.",
-                salary_title: "الراتب والامتيازات", sal_box_title: "معلومات شفافة", sal_box_text: "يتحدد حسب المنصب، الخبرة، ونوع الرخصة.",
-                about_sec_sub: "الهوية والالتزام", about_sec_title: "عن TransEuro-Logistics", about_sec_desc: "شريك هيكلي، شفاف و his الحديث.",
-                who_we_are_title: "من نحن؟", who_we_are_text_1: "متخصصون في النقل الدولي بين شمال أفريقيا وأوروبا.", who_we_are_text_2: "إدارة صارمة وامتثال جمركي كامل.",
-                zones_title: "مناطق العمل", zones_text: "الممرات الاستراتيجية المغرب العربي - أوروبا.", zone_na: "شمال أفريقيا:", zone_eu: "أوروبا:",
-                serv_page_sub: "حلول مهنية", serv_page_title: "خدماتنا اللوجستية", serv_page_desc: "خدمات موجهة للشاحنين الصناعيين.",
-                fleet_sub: "المعدات والأسطول", fleet_title: "أسطول مركباتنا", fleet_desc: "أسطول حديث ومصان بدقة.",
-                truck_1_title: "شاحنات Euro 6", truck_1_desc: "مركبات حديثة عالية الراحة.", truck_2_title: "مقطورات مبردة", truck_2_desc: "مجموعات تبريد معتمدة ATP.",
-                faq_sub: "المعلومات والشفافية", faq_title: "الأسئلة الشائعة",
-                faq_q1: "من يمكنه التقديم لفرص التوظيف؟", faq_a1: "أي سائق مهني يحمل رخصة سياقة صالحة من فئة B, BE, C, CE, D, DE.",
-                faq_q2: "ما هي رخص السياقة المقبولة؟", faq_a2: "نقبل جميع الفئات المهنية (سيارات، شاحنات، حافلات). باستثناء الدراجات النارية.",
-                contact_sub: "الدعم والمعلومات", contact_title: "اتصل بدماتنا", contact_info_title: "المعلومات الرسمية", contact_form_title: "إرسال رسالة", btn_send: "إرسال",
-                footer_brand_desc: "النقل البري الدولي شمال أفريقيا – أوروبا.", footer_legal: "قانوني"
-            },
-            en: {
-                badge_certified: "Certified CEMT / TIR Carrier",
-                nav_home: "Home",
-                nav_about: "About Us",
-                nav_services: "Services",
-                nav_fleet: "Fleet",
-                nav_jobs: "Careers",
-                nav_faq: "FAQ",
-                nav_contact: "Contact",
-                nav_apply: "Apply Now",
-                hero_badge: "Transcontinental Transport Leader",
-                hero_title: "International Transport & <span>Euro-African</span> Logistics",
-                hero_desc: "Reliable, secure, and optimized logistics solutions for temperature-controlled and dry cargo between North Africa and the European Union.",
-                btn_discover: "Discover Services",
-                btn_jobs: "View Job Offers",
-                stat_1: "Real-time GPS Tracking",
-                stat_2: "Monthly Sea Crossings",
-                stat_3: "Modern Euro 6 Eco Fleet",
-                stat_4: "24/7 Customs Assistance",
-                about_subtitle: "Excellence & Reliability",
-                about_title: "The Logistics Bridge Between Two Continents",
-                about_text: "TransEuro-Logistics operates at the heart of strategic trade corridors connecting North Africa to Europe, ensuring total cargo integrity.",
-                about_p1: "Integrated customs formalities management.",
-                about_p2: "Strict compliance with ATP cold chain standards.",
-                about_p3: "Multilingual dedicated support team.",
-                btn_learn_more: "Learn More About Us",
-                serv_subtitle: "Areas of Expertise",
-                serv_title: "Tailored Logistics Services",
-                serv_1_t: "FTL / LTL Road Freight",
-                serv_1_d: "Full truckload and groupage transport services across Europe and North Africa.",
-                serv_2_t: "Refrigerated Transport",
-                serv_2_d: "Strict temperature-controlled transport for food and pharmaceutical products.",
-                serv_3_t: "Logistics & Warehousing",
-                serv_3_d: "Secure warehousing hubs in strategic locations (Tangier, Algeciras, Lyon, Rotterdam).",
-                cta_badge: "Expansion Campaign",
-                cta_title: "We Are Hiring Professional Drivers",
-                cta_desc: "As part of our fleet expansion, we regularly offer career opportunities for drivers based in Morocco, Algeria, and Tunisia.",
-                cta_btn: "View Recruitment Plan",
-                form_sub: "Application File",
-                form_title: "Recruitment Form",
-                form_desc: "Please fill in all required fields and select your driving license category (Cars, Trucks, Buses, Trailers - Motorcycles Excluded).",
-                lbl_firstname: "First Name *",
-                lbl_lastname: "Last Name *",
-                lbl_dob: "Date of Birth *",
-                lbl_country: "Country of Residence *",
-                opt_select_country: "Select Country",
-                opt_other_africa: "Other African Country",
-                lbl_city: "City of Residence *",
-                lbl_phone: "Phone Number *",
-                lbl_email: "Official Email Address *",
-                lbl_license: "Driving License Category *",
-                opt_select_license: "-- Select Main License --",
-                grp_light: "Light Vehicles & Passenger Cars",
-                grp_heavy: "Heavy Goods Vehicles & Freight",
-                grp_bus: "Passenger Transport & Buses",
-                grp_multi: "Multi-License Combinations",
-                lbl_exp: "Years of Experience *",
-                exp_1: "Under 2 years", exp_2: "2 to 5 years", exp_3: "5 to 10 years", exp_4: "Over 10 years",
-                lbl_exp_int: "International Transport Experience *",
-                opt_yes: "Yes", opt_no: "No",
-                lbl_docs: "Supporting Documents (PDF, JPG, PNG - Max 5MB)",
-                up_cv: "Upload CV / Resume *",
-                up_license: "Driving License Copy (Front/Back) *",
-                fee_title: "Important Regulatory Notice Regarding Application Processing:",
-                fee_desc_1: "If pre-selected, a non-refundable administrative processing fee of 20 USD may apply for document verification.",
-                fee_desc_2: "LEGAL DISCLAIMER: Payment of administrative fees does not guarantee employment.",
-                btn_submit_app: "Submit Application",
-                success_title: "Application Registered!",
-                success_desc: "Your application has been received successfully. Our HR team will review your profile.",
-                rec_sub: "Career Opportunities", rec_title: "Recruitment – Professional Drivers", rec_desc: "Human capital development plan.",
-                job_badge: "Official Recruitment Notice", job_title: "International Heavy Truck Driver (M/F)", job_axis: "Corridor: North Africa ↔ Europe",
-                job_apply_btn: "Apply Now", meta_volume_lbl: "Open Positions", meta_volume_val: "Up to 1,500 Posts",
-                meta_target_lbl: "Target Countries", meta_contract_lbl: "Contract Type", meta_contract_val: "Permanent / Regulatory",
-                missions_title: "Main Responsibilities", m_1: "International freight transport North Africa ↔ Europe.", m_2: "Strict compliance with driving rest times.", m_3: "Pre-trip vehicle inspection.",
-                salary_title: "Remuneration & Benefits", sal_box_title: "Transparent Info", sal_box_text: "Determined by role, experience, and license type.",
-                about_sec_sub: "Identity & Commitment", about_sec_title: "About TransEuro-Logistics", about_sec_desc: "A structured, transparent, and modern operator.",
-                who_we_are_title: "Who We Are", who_we_are_text_1: "Specialist in international road freight North Africa - Europe.", who_we_are_text_2: "Strict management and customs compliance.",
-                zones_title: "Operating Zones", zones_text: "Strategic corridors Maghreb - Europe.", zone_na: "North Africa:", zone_eu: "Europe:",
-                serv_page_sub: "Business Solutions", serv_page_title: "Logistics Services", serv_page_desc: "Solutions for industrial shippers.",
-                fleet_sub: "Equipment & Fleet", fleet_title: "Our Vehicle Fleet", fleet_desc: "Modern and well-maintained fleet.",
-                truck_1_title: "Euro 6 Trucks", truck_1_desc: "Recent high-comfort tractor units.", truck_2_title: "Refrigerated Semi-Trailers", truck_2_desc: "ATP-certified cooling units.",
-                faq_sub: "Information & Transparency", faq_title: "Frequently Asked Questions",
-                faq_q1: "Who can apply for job offers?", faq_a1: "Any professional driver with a valid B, BE, C, CE, D, or DE license.",
-                faq_q2: "Which driving licenses are accepted?", faq_a2: "All professional categories (Cars, Trucks, Buses). Motorcycles excluded.",
-                contact_sub: "Support & Information", contact_title: "Contact Our Team", contact_info_title: "Official Details", contact_form_title: "Send a Message", btn_send: "Send",
-                footer_brand_desc: "International road freight North Africa – Europe.", footer_legal: "Legal"
+                hero_title: "النقل الدولي"
             }
         };
 
-        let currentLang = 'fr';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            const dict = i18nData[lang];
-            if (!dict) return;
-
-            // Set HTML Direction for Arabic
-            if (lang === 'ar') {
-                document.documentElement.setAttribute('dir', 'rtl');
-                document.documentElement.setAttribute('lang', 'ar');
-            } else {
-                document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.setAttribute('lang', lang);
-            }
-
-            document.getElementById('currentLangStr').innerText = lang.toUpperCase();
-
-            // Translate Text Content
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = dict[key];
-                    } else {
-                        el.innerHTML = dict[key];
-                    }
-                }
-            });
-
-            // Close Language Dropdown
-            document.getElementById('langDropdown').classList.remove('show');
-        }
-
-        function toggleLangDropdown() {
-            document.getElementById('langDropdown').classList.toggle('show');
-        }
-
-        // SPA Navigation Router
+        // Navigation Engine
         function navigateTo(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
+
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Update Nav Links Active Class
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + pageId) {
+                if (link.getAttribute('href') === `#${pageId}`) {
                     link.classList.add('active');
                 }
             });
 
-            // Close Mobile Menu if open
-            document.getElementById('navMenu').classList.remove('active');
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Mobile Menu Toggle
-        document.getElementById('mobileToggle').addEventListener('click', () => {
+        document.getElementById('mobileToggle').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });
 
         // FAQ Accordion Toggle
         function toggleFaq(button) {
-            const faqItem = button.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        }
+
+        // Language Switcher Logic
+        function toggleLangDropdown() {
+            document.getElementById('langDropdown').classList.toggle('show');
+        }
+
+        function setLanguage(lang) {
+            const currentLangStr = document.getElementById('currentLangStr');
+            const htmlTag = document.documentElement;
+
+            if (lang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+                currentLangStr.textContent = 'AR';
+            } else if (lang === 'en') {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'en');
+                currentLangStr.textContent = 'EN';
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'fr');
+                currentLangStr.textContent = 'FR';
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (i18nData[lang] && i18nData[lang][key]) {
+                    element.innerHTML = i18nData[lang][key];
+                }
             });
 
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
+            document.getElementById('langDropdown').classList.remove('show');
         }
 
-        // File Upload Helper
-        function updateFileName(input, targetId) {
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn') && !event.target.matches('.lang-btn *')) {
+                const dropdown = document.getElementById('langDropdown');
+                if (dropdown && dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        };
+
+        // File Input Preview & Reset Logic
+        function handleFilePreview(input, labelId, previewContainerId, previewImgId) {
             if (input.files && input.files[0]) {
-                document.getElementById(targetId).innerText = "Fichier sélectionné : " + input.files[0].name;
+                const file = input.files[0];
+                document.getElementById(labelId).textContent = file.name;
+
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.getElementById(previewImgId);
+                        img.src = e.target.result;
+                        document.getElementById(previewContainerId).style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    document.getElementById(previewContainerId).style.display = 'none';
+                }
             }
         }
 
-        // Handle Application Form Submit
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            document.getElementById('applicationForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
+        function resetFileInput(inputId, labelId, previewContainerId, originalI18nKey) {
+            const input = document.getElementById(inputId);
+            input.value = '';
+            
+            const labelSpan = document.getElementById(labelId);
+            const currentLang = document.documentElement.getAttribute('lang') || 'fr';
+            if (i18nData[currentLang] && i18nData[currentLang][originalI18nKey]) {
+                labelSpan.innerHTML = i18nData[currentLang][originalI18nKey];
+            } else {
+                labelSpan.textContent = 'Téléverser un fichier';
+            }
+
+            const previewContainer = document.getElementById(previewContainerId);
+            previewContainer.style.display = 'none';
+            const img = previewContainer.querySelector('img');
+            if (img) img.src = '';
         }
 
-        // Admin Auth Simulation
+        function handleFormSubmit(event) {
+            // Permet la redirection naturelle vers Finaliser-le-paiement.html via action GET
+        }
+
+        // Admin Dashboard Logic
         function handleAdminLogin(event) {
             event.preventDefault();
-            const u = document.getElementById('adminUser').value;
-            const p = document.getElementById('adminPass').value;
-            if (u === 'admin' && p === 'admin') {
-                document.getElementById('adminAuthBlock').style.display = 'none';
-                document.getElementById('adminMainDashboard').style.display = 'grid';
-            } else {
-                alert('Identifiants incorrects');
-            }
+            document.getElementById('adminAuthBlock').style.display = 'none';
+            document.getElementById('adminMainDashboard').style.display = 'grid';
         }
 
         function handleAdminLogout() {
@@ -2600,48 +2512,40 @@
         }
 
         function switchAdminTab(tabKey) {
-            document.querySelectorAll('.admin-section-block').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.admin-menu-item').forEach(m => m.classList.remove('active'));
-            
-            const targetBlock = document.getElementById('tab-' + tabKey);
-            if (targetBlock) targetBlock.classList.add('active');
-            
+            document.querySelectorAll('.admin-menu-item').forEach(item => item.classList.remove('active'));
             event.currentTarget.classList.add('active');
+
+            document.querySelectorAll('.admin-section-block').forEach(block => block.classList.remove('active'));
+            const targetBlock = document.getElementById(`tab-${tabKey}`);
+            if (targetBlock) {
+                targetBlock.classList.add('active');
+            }
 
             const titles = {
                 stats: "Tableau de Bord Général",
                 candidates: "Gestion des Candidats & Chauffeurs",
-                applications: "Gestion des Demandes d'Emploi",
-                docs: "Vérification & Validation des Documents",
-                licenses: "Gestion des Permis de Conduire",
-                partners: "Entreprises Partenaires Internationales",
+                applications: "Demandes d'Emploi Enregistrées",
+                docs: "Vérification des Documents",
+                licenses: "Gestion des Permis",
+                partners: "Réseau d'Entreprises Partenaires",
                 jobs: "Gestion des Offres d'Emploi",
-                payments: "Paiements & Transactions",
-                history: "Historique Complet des Actions"
+                payments: "Transactions & Frais Administratifs",
+                history: "Historique des Actions"
             };
-            document.getElementById('adminSectionTitle').innerText = titles[tabKey] || "Dashboard Admin";
+            document.getElementById('adminSectionTitle').textContent = titles[tabKey] || "Dashboard Admin";
         }
 
         function viewDriverProfile(name, license, country, status) {
-            document.getElementById('profName').innerText = name;
-            document.getElementById('profLicense').innerText = license;
-            document.getElementById('profCountry').innerText = country;
-            document.getElementById('profStatus').innerText = status;
+            document.getElementById('profName').textContent = name;
+            document.getElementById('profLicense').textContent = license;
+            document.getElementById('profCountry').textContent = country;
+            document.getElementById('profStatus').textContent = status;
             document.getElementById('driverProfileModal').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('driverProfileModal').offsetTop - 100, behavior: 'smooth' });
         }
 
         function closeDriverProfile() {
             document.getElementById('driverProfileModal').style.display = 'none';
-        }
-
-        // Close lang dropdown on click outside
-        window.onclick = function(e) {
-            if (!e.target.matches('.lang-btn') && !e.target.matches('.lang-btn *')) {
-                const dropdown = document.getElementById('langDropdown');
-                if (dropdown && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
-            }
         }
     </script>
 </body>
